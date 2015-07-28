@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Benchmark Code</string>
+
+    <string name="title_if">If</string>
+    <string name="title_if_switch">If vs Switch</string>
+    <string name="title_loop">Loop</string>
+    <string name="title_loop_recursive">Loop vs Recursive</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_about">About</string>
+
+    <string name="run">Run</string>
+    <string name="round">Round</string>
+    <string name="choice1">Choice 1</string>
+    <string name="choice2">Choice 2</string>
+    <string name="choice3">Choice 3</string>
+</resources>
