@@ -28,8 +28,8 @@ public abstract class BaseFragment extends Fragment {
     private static final byte MAX_ROUND = 10;   // DO NOT CHANGE
     private static final Integer MAX_LOOP_PER_ROUND = 10000000;
 
-    private final int RANDOM_MIN = 1;
-    private final int RANDOM_MAX = 100;
+    protected int randomMin;
+    protected int randomMax;
 
     private String[] headers;
     private ArrayList<Byte> randomList;
@@ -38,14 +38,22 @@ public abstract class BaseFragment extends Fragment {
         // Required empty public constructor
     }
 
+    protected void setRandomRange() {
+        // Override this method for change randomMin, randomMax value
+        randomMin = 1;
+        randomMax = 100;
+    }
+
     private void getRandom() {
+        setRandomRange();
+
         randomList = new ArrayList<>();
 
         Random rnd = new Random();
 
         for (int i=0; i<MAX_LOOP_PER_ROUND; i++) {
             try {
-                randomList.add((byte) (rnd.nextInt(RANDOM_MAX - RANDOM_MIN + 1) + RANDOM_MIN));
+                randomList.add((byte) (rnd.nextInt(randomMax - randomMin + 1) + randomMin));
             } catch (OutOfMemoryError e) {
                 e.printStackTrace();
                 break;
@@ -219,7 +227,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private class ListViewAdapter extends BaseAdapter {
-
         private String[] headers;
         private ArrayList<SumResult> items;
 
