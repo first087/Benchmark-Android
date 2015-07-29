@@ -103,7 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_if),
                         getString(R.string.title_if_switch),
-//                        getString(R.string.title_loop),
+                        getString(R.string.title_loop),
 //                        getString(R.string.title_loop_recursive),
                         // TODO: Add menu title here
                 }));
