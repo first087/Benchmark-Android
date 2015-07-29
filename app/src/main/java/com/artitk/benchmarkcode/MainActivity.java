@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.artitk.benchmarkcode.fragment.BaseFragment;
 import com.artitk.benchmarkcode.fragment.IfFragment;
+import com.artitk.benchmarkcode.fragment.IfSwitchFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -46,9 +47,9 @@ public class MainActivity extends AppCompatActivity
 
         BaseFragment fragment = null;
         switch (position) {
-            case 0: fragment = IfFragment.newInstance();    break;
+            case 0: fragment = IfFragment.newInstance();        break;
+            case 1: fragment = IfSwitchFragment.newInstance();  break;
             // TODO: New fragment here
-            case 1: return;
         }
 
         fragmentManager.beginTransaction()
