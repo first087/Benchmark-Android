@@ -104,7 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_if),
                         getString(R.string.title_if_switch),
                         getString(R.string.title_loop),
-//                        getString(R.string.title_loop_recursive),
+                        getString(R.string.title_loop_recursive),
                         // TODO: Add menu title here
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
