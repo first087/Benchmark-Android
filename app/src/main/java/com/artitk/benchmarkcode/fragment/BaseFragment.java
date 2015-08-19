@@ -1,6 +1,6 @@
 package com.artitk.benchmarkcode.fragment;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
@@ -18,6 +18,7 @@ import com.artitk.benchmarkcode.MainActivity;
 import com.artitk.benchmarkcode.R;
 import com.artitk.benchmarkcode.data.SumResult;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -62,13 +63,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private long run(int bmCase) {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         for (byte item : randomList) {
             runCase(bmCase, item);
         }
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
 
         return endTime - startTime;
     }
@@ -298,10 +299,14 @@ public abstract class BaseFragment extends Fragment {
                     if (headers.length >= 3) viewHolder.textViewChoice3.setText("-");
 
                     ArrayList<Long> sumResult = items.get(position - 1).getSumResult();
-                    if (sumResult.size() >= 1) viewHolder.textViewChoice1.setText(sumResult.get(0).toString());
-                    if (sumResult.size() >= 2) viewHolder.textViewChoice2.setText(sumResult.get(1).toString());
-                    if (sumResult.size() >= 3) viewHolder.textViewChoice3.setText(sumResult.get(2).toString());
+                    if (sumResult.size() >= 1) viewHolder.textViewChoice1.setText(timeNano2Ms(sumResult.get(0)));
+                    if (sumResult.size() >= 2) viewHolder.textViewChoice2.setText(timeNano2Ms(sumResult.get(1)));
+                    if (sumResult.size() >= 3) viewHolder.textViewChoice3.setText(timeNano2Ms(sumResult.get(2)));
             }
+        }
+
+        private String timeNano2Ms(Long nanoTime) {
+            return (new DecimalFormat("0.00")).format(nanoTime.doubleValue() / 1000000);
         }
 
         private class ViewHolder {
@@ -320,9 +325,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity) getActivity()).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
